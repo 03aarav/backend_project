@@ -1,9 +1,7 @@
 package com.example.demo.Model;
-
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDateTime;
 
 @Document(collection = "ticket_payments")
@@ -26,7 +24,7 @@ public class TicketBookingPayment {
 
     private String qrCode;
 
-    private Boolean used;  // NEW FIELD
+    private Boolean used;// NEW FIELD
 
     private LocalDateTime createdAt;
 }

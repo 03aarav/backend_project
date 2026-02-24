@@ -2,6 +2,7 @@ package com.example.demo.filter;
 
 import com.example.demo.Security.CustomUserDetailsService;
 import com.example.demo.Util.JwtUtil;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,18 +37,30 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if(header != null && header.startsWith("Bearer ")){
 
-            String token = header.substring(7);
-            String username = jwtUtil.extractUsername(token);
+            try {
 
-            var user = service.loadUserByUsername(username);
+                String token = header.substring(7);
+                String username = jwtUtil.extractUsername(token);
 
-            var auth = new UsernamePasswordAuthenticationToken(
-                    user,null,user.getAuthorities());
+                if(SecurityContextHolder.getContext().getAuthentication() == null){
 
-            SecurityContextHolder.getContext().setAuthentication(auth);
+                    var user = service.loadUserByUsername(username);
+
+                    var auth = new UsernamePasswordAuthenticationToken(
+                            user,
+                            null,
+                            user.getAuthorities()
+                    );
+
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                }
+
+            } catch (JwtException e){
+                res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
+            }
         }
 
         chain.doFilter(req,res);
     }
 }
-

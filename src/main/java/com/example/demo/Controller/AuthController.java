@@ -28,13 +28,16 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestBody User request){
 
-        User user = repo.findByUserName(request.getUserName()).orElseThrow();
 
+
+        User user = repo.findByUserName(request.getUserName()).orElseThrow();
         if(encoder.matches(request.getPassword(), user.getPassword())){
             return jwt.generateToken(user.getUserName());
         }
-
-        throw new RuntimeException("Invalid Credentials");
+       throw new RuntimeException("Invalid Credentials");
     }
+
+
+
 }
 
