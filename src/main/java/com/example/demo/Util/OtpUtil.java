@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.security.SecureRandom;
 
 @Component
+
 public class OtpUtil {
 
     private static final SecureRandom random = new SecureRandom();
