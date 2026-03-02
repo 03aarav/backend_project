@@ -4,6 +4,7 @@ package com.example.demo.Util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -11,7 +12,11 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "mysecretkeymysecretkeymysecretkey123";
+
+
+
+    @Value("${JWT_SECRET}")
+    private String SECRET;
 
     public String generateToken(String username){
 
