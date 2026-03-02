@@ -20,6 +20,8 @@ public class SecurityConfig {
     @Autowired
     JwtFilter jwtFilter;
 
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 

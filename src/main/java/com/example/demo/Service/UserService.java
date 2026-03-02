@@ -12,7 +12,8 @@ public interface UserService {
     List<User> getAllUsers();
     User updateUser(String id, User updatedUser);
     void deleteUser(String id);
-    boolean existsByEmail(String email);          // Added
+    boolean existsByEmail(String email);
+    Optional<User> findByPhoneNo(String phoneNo);// Added
 }
 
 
