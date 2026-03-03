@@ -56,6 +56,11 @@ public class AuthController {
        throw new RuntimeException("Invalid Credentials");
     }
 
+    @GetMapping
+    public String test(){
+        return "succes";
+    }
+
 
     @PostMapping("/forgot-password")
     public String forgot(@RequestBody OtpRequest req){
