@@ -58,7 +58,7 @@ public class AuthController {
 
     @GetMapping
     public String test(){
-        return "succes";
+        return "chal gaya backned sheru";
     }
 
 
