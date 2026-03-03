@@ -17,7 +17,6 @@ public class SwaggerConfig {
         final String securitySchemeName = "bearerAuth";
 
         return new OpenAPI()
-                // 🔐 Security
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(
                         new Components()
@@ -28,8 +27,6 @@ public class SwaggerConfig {
                                                 .scheme("bearer")
                                                 .bearerFormat("JWT")
                                 )
-                )
-
-                .addServersItem(new Server().url("backendproject-production-aaf9.up.railway.app"));
+                );
     }
 }
