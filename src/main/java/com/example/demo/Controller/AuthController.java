@@ -81,6 +81,12 @@ public class AuthController {
     }
 
 
+    @GetMapping("/test1")
+    public String test1() {
+        throw new RuntimeException("Invalid data");
+    }
+
+
 
 
 
