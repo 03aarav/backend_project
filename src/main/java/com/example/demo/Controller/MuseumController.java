@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 import com.example.demo.Model.Museum;
 import com.example.demo.Service.MuseumService;
-import lombok.RequiredArgsConstructor; import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,6 +45,16 @@ public class MuseumController {
     @DeleteMapping("/{id}")
     public void deleteMuseum(@PathVariable String id) {
         museumService.deleteMuseum(id);
+    }
+
+    @GetMapping("/search")
+    public Page<Museum> searchMuseums(
+            @RequestParam String q,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+
+        return museumService.searchMuseums(q, page, size);
     }
 
 }
